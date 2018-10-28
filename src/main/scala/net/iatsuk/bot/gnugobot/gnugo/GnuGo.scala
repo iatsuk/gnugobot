@@ -1,5 +1,5 @@
 /*
- * GnuGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
+ * GnuGoBot  Copyright (C) 2018  Andrei Iatsuk <hi@yatsukav.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 package net.iatsuk.bot.gnugobot.gnugo
 
-import java.io.{File, PrintWriter}
+import java.io.PrintWriter
 
 import scala.io.Source
 
@@ -29,8 +29,6 @@ class GnuGo {
   def start(): Unit = {
     process = new ProcessBuilder()
       .command("./gnugo", "--mode", "gtp")
-      .redirectError(new File("error.txt"))
-      .redirectOutput(new File("output.txt"))
       .start()
 
     sender = new PrintWriter(process.getOutputStream)

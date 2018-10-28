@@ -1,5 +1,5 @@
 /*
- * GnuGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
+ * GnuGoBot  Copyright (C) 2018  Andrei Iatsuk <hi@yatsukav.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,15 @@
  */
 package net.iatsuk.bot.gnugobot
 
+import java.util.{Locale, ResourceBundle}
+
+import net.iatsuk.bot.gnugobot.utils.Utf8Control
+
 object Application extends App {
-  val license =
-    """GnuGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
-      |This program comes with ABSOLUTELY NO WARRANTY.
-      |This is free software, and you are welcome to
-      |redistribute it under certain conditions.
-      |See https://www.gnu.org/licenses/ for details.""".stripMargin
-  println(license)
+  val eng = ResourceBundle.getBundle("lang", Locale.ROOT, new Utf8Control)
+  val rus = ResourceBundle.getBundle("lang", Locale.forLanguageTag("ru"), new Utf8Control)
+  println(eng.getString("greeting"))
+  println(eng.getString("choose_lang"))
+  println(rus.getString("greeting"))
+  println(rus.getString("choose_lang"))
 }
