@@ -29,7 +29,6 @@ class GnuGo {
   def start(): Unit = {
     process = new ProcessBuilder()
       .command("./gnugo", "--mode", "gtp")
-      .directory(new File("src/main/resources/"))
       .redirectError(new File("error.txt"))
       .redirectOutput(new File("output.txt"))
       .start()
@@ -38,12 +37,8 @@ class GnuGo {
     receiver = Source.fromInputStream(process.getInputStream)
   }
 
-  def send(msg: String): Iterator[String] = {
-    sender.println("boardsize 7")
-    sender.println("black a1")
-    sender.println("black a0")
-    sender.println("black a2")
-    sender.println("showboard")
+  def send(msg: Seq[String]): Iterator[String] = {
+    for (m <- msg) sender.println(m)
     sender.flush()
     Thread.sleep(100L)
     receiver.getLines()

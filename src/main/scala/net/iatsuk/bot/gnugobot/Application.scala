@@ -18,7 +18,7 @@ package net.iatsuk.bot.gnugobot
 
 object Application extends App {
   val license =
-    """BlindGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
+    """GnuGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
       |This program comes with ABSOLUTELY NO WARRANTY.
       |This is free software, and you are welcome to
       |redistribute it under certain conditions.
