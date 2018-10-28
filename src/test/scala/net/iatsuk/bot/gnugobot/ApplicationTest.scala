@@ -1,5 +1,5 @@
 /*
- * BlindGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
+ * GnuGoBot  Copyright (C) 2018  Andrei Iatsuk (hi@yatsukav.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package net.iatsuk.bot.blindgo
+package net.iatsuk.bot.gnugobot
 
 import org.junit.{Assert, Test}
 

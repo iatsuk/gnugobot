@@ -4,7 +4,8 @@ organization := "net.iatsuk"
 
 lazy val bot = (project in file("."))
   .settings(
-    name := "BlindGoBot",
+    name := "GnuGoBot",
+    libraryDependencies += "info.mukel" %% "telegrambot4s" % "3.0.16",
     libraryDependencies += "junit" % "junit" % "4.12" % Test,
   )
 
