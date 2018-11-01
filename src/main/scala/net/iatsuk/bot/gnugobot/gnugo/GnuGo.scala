@@ -18,6 +18,8 @@ package net.iatsuk.bot.gnugobot.gnugo
 
 import java.io.PrintWriter
 
+import net.iatsuk.bot.gnugobot.gnugo.GnuGoCmd.Dot
+
 import scala.io.Source
 
 class GnuGo {
@@ -26,25 +28,34 @@ class GnuGo {
   private var sender: PrintWriter = _
   private var receiver: Source = _
 
-  def start(): Unit = {
-    process = new ProcessBuilder()
-      .command("./gnugo", "--mode", "gtp")
-      .start()
 
-    sender = new PrintWriter(process.getOutputStream)
-    receiver = Source.fromInputStream(process.getInputStream)
+  def move(isAiBlack: Boolean, historyCmd: Seq[GnuGoCmd.Cmd]): Dot = ???
+
+  private def start(): Unit = {
+    if (isWork) {
+      process = new ProcessBuilder()
+        .command("./gnugo", "--mode", "gtp")
+        .start()
+
+      sender = new PrintWriter(process.getOutputStream)
+      receiver = Source.fromInputStream(process.getInputStream)
+    }
   }
 
-  def send(msg: Seq[String]): Iterator[String] = {
+  private def send(msg: Seq[String]): Iterator[String] = {
+    if (isWork) start()
     for (m <- msg) sender.println(m)
     sender.flush()
     Thread.sleep(100L)
     receiver.getLines()
   }
 
-  def stop(): Int = {
-    process.destroy()
-    process.waitFor()
-    process.exitValue()
+  private def stop(): Unit = {
+    if (isWork) {
+      process.destroy()
+      process.waitFor()
+    }
   }
+
+  def isWork: Boolean = process != null && !process.isAlive
 }
