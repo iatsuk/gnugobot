@@ -14,15 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-version := "0.1.0-SNAPSHOT"
-scalaVersion := "2.12.7"
-organization := "net.iatsuk"
+package net.iatsuk.bot.gnugobot.protocols
 
-lazy val bot = (project in file("."))
-  .settings(
-    name := "GnuGoBot",
-    libraryDependencies += "info.mukel" %% "telegrambot4s" % "3.0.16",
-    libraryDependencies += "org.jetbrains.xodus" % "xodus-vfs" % "1.2.3",
-    libraryDependencies += "junit" % "junit" % "4.12" % Test,
-  )
+import info.mukel.telegrambot4s.api.declarative.Commands
+import info.mukel.telegrambot4s.api.{Polling, TelegramBot}
 
+import scala.io.Source
+
+object Telegram extends TelegramBot with Polling with Commands {
+
+  lazy val token: String = scala.util.Properties
+    .envOrNone("BOT_TOKEN")
+    .getOrElse(Source.fromFile("bot.token").getLines().mkString)
+  onCommand('hello) { implicit msg => reply("My token is work!") }
+}

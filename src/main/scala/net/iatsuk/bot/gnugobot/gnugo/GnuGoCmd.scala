@@ -39,4 +39,5 @@ object GnuGoCmd {
   case object Undo extends Cmd("undo")
   case object Score extends Cmd("final_score")
   case object Pass extends Cmd("")
+  case object Showboard extends Cmd("showboard")
 }

@@ -14,15 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-version := "0.1.0-SNAPSHOT"
-scalaVersion := "2.12.7"
-organization := "net.iatsuk"
+package net.iatsuk.bot.gnugobot.core
 
-lazy val bot = (project in file("."))
-  .settings(
-    name := "GnuGoBot",
-    libraryDependencies += "info.mukel" %% "telegrambot4s" % "3.0.16",
-    libraryDependencies += "org.jetbrains.xodus" % "xodus-vfs" % "1.2.3",
-    libraryDependencies += "junit" % "junit" % "4.12" % Test,
-  )
+object Objects {
 
+  case class User(protocol: String, id: String)
+
+  case class GameMoves(moves: Seq[String])
+
+}
